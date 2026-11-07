@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Dashboard Scope Estimator — Indian Karigar Studio</title>
+  <meta name="description" content="Phone-friendly free dashboard scope estimator. Suggests Starter / Standard / Pro package band from your answers. Planning tool only — Indian Karigar Studio." />
+  <style>
+    :root {
+      --bg: #1c1410; --card: #2a1f1a; --ink: #fff7ed; --muted: #b49e8c;
+      --accent: #d97706; --line: #4a3028; --green: #14532d; --yellow: #422006;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.5;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { font-size: 1.35rem; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; background: var(--accent); color: #1c1410;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px; margin-bottom: 14px;
+    }
+    .card h2 { margin: 0 0 12px; font-size: 1rem; }
+    .note { font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; }
+    fieldset {
+      border: 0; margin: 0 0 4px; padding: 0;
+    }
+    legend {
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; padding: 0;
+    }
+    .opt {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; margin-bottom: 6px;
+      background: var(--yellow); border: 1px solid var(--line); border-radius: 10px;
+      cursor: pointer; font-size: 0.92rem;
+    }
+    .opt:has(input:checked) {
+      border-color: var(--accent); background: #5a3a12;
+    }
+    .opt input { margin-top: 3px; accent-color: var(--accent); flex-shrink: 0; }
+    .result {
+      background: var(--green); border: 1px solid #166534; border-radius: 14px;
+      padding: 16px; margin-bottom: 14px;
+    }
+    .result h2 { margin: 0 0 6px; font-size: 1.05rem; color: #bbf7d0; }
+    .result .price { font-size: 1.25rem; font-weight: 700; margin: 0 0 8px; }
+    .result .advance { font-size: 0.92rem; color: #bbf7d0; margin: 0 0 8px; }
+    .result .soft { font-size: 0.82rem; color: #86efac; margin: 0; }
+    .result.empty {
+      background: var(--card); border-color: var(--line);
+    }
+    .result.empty h2 { color: var(--muted); }
+    table.pkgs {
+      width: 100%; border-collapse: collapse; font-size: 0.85rem;
+    }
+    table.pkgs th, table.pkgs td {
+      text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    table.pkgs th { color: var(--accent); font-weight: 600; }
+    table.pkgs td:first-child { white-space: nowrap; font-weight: 600; }
+    a.cta {
+      display: block; text-align: center; margin-top: 8px; padding: 12px 14px;
+      background: var(--accent); color: #1c1410; font-weight: 700; text-decoration: none;
+      border-radius: 12px;
+    }
+    a.cta:hover { filter: brightness(1.05); }
+    a.cta.secondary {
+      background: transparent; color: var(--accent); border: 1px solid var(--line);
+      margin-top: 8px;
+    }
+    footer { margin-top: 18px; color: var(--muted); font-size: 0.82rem; }
+    footer a { color: var(--accent); }
+    .links a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">Free · Dashboard scope</div>
+    <h1>Dashboard Scope Estimator</h1>
+    <p class="sub">
+      Fill what you know on your phone. Suggests a package band from your answers.
+      <strong>Planning tool only</strong> — not a finished dashboard.
+    </p>
+
+    <div class="card">
+      <h2>1) Where does the data live?</h2>
+      <fieldset>
+        <legend>Pick one</legend>
+        <label class="opt"><input type="radio" name="data" value="excel" /> Excel / Google Sheets</label>
+        <label class="opt"><input type="radio" name="data" value="csv" /> CSV exports</label>
+        <label class="opt"><input type="radio" name="data" value="db" /> Database or API</label>
+        <label class="opt"><input type="radio" name="data" value="mix" /> Mix of the above</label>
+      </fieldset>
+    </div>
+
+    <div class="card">
+      <h2>2) How many weekly KPIs?</h2>
+      <fieldset>
+        <legend>Numbers you check every week</legend>
+        <label class="opt"><input type="radio" name="kpis" value="1-2" /> 1–2</label>
+        <label class="opt"><input type="radio" name="kpis" value="3-5" /> 3–5</label>
+        <label class="opt"><input type="radio" name="kpis" value="6+" /> 6+</label>
+      </fieldset>
+    </div>
+
+    <div class="card">
+      <h2>3) Filters needed</h2>
+      <fieldset>
+        <legend>Select all that apply (intake only — does not change the band)</legend>
+        <label class="opt"><input type="checkbox" name="filter" value="date" /> Date</label>
+        <label class="opt"><input type="checkbox" name="filter" value="category" /> Category / product</label>
+        <label class="opt"><input type="checkbox" name="filter" value="channel" /> Channel</label>
+        <label class="opt"><input type="checkbox" name="filter" value="city" /> City / store</label>
+        <label class="opt"><input type="checkbox" name="filter" value="other" /> Other</label>
+      </fieldset>
+    </div>
+
+    <div class="card">
+      <h2>4) Who views it?</h2>
+      <fieldset>
+        <legend>Pick one</legend>
+        <label class="opt"><input type="radio" name="who" value="me" /> Just me</label>
+        <label class="opt"><input type="radio" name="who" value="shared" /> 2–5 shared link</label>
+        <label class="opt"><input type="radio" name="who" value="login" /> Needs login</label>
+      </fieldset>
+    </div>
+
+    <div class="card">
+      <h2>5) Hosting need</h2>
+      <fieldset>
+        <legend>Pick one</legend>
+        <label class="opt"><input type="radio" name="host" value="local" /> Open file / local OK</label>
+        <label class="opt"><input type="radio" name="host" value="web" /> Want a shared web link</label>
+        <label class="opt"><input type="radio" name="host" value="refresh" /> Need scheduled refresh or DB</label>
+      </fieldset>
+    </div>
+
+    <div id="result" class="result empty" aria-live="polite">
+      <h2>Your suggested package</h2>
+      <p class="soft">Answer sections 1, 2, 4 and 5 to see a suggestion.</p>
+    </div>
+
+    <div class="card">
+      <h2>Packages (brief)</h2>
+      <table class="pkgs">
+        <thead>
+          <tr><th>Package</th><th>Includes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Starter<br />₹2,499</td>
+            <td>1 page · up to 4 KPI cards + 4 charts · CSV/Sheet upload · date &amp; category filters · 1 revision · ~3 days</td>
+          </tr>
+          <tr>
+            <td>Standard<br />₹5,999</td>
+            <td>Up to 3 pages · live Google Sheet · downloads · free Streamlit Community Cloud setup · 2 revisions · ~5 days</td>
+          </tr>
+          <tr>
+            <td>Pro<br />₹11,999</td>
+            <td>DB/API · login · scheduled refresh · simple forecasts · source + handover call · 3 revisions · ~7–10 days</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:10px;">Payment: 50% advance via Razorpay, balance on delivery (or full prepaid).</p>
+    </div>
+
+    <div class="card links">
+      <h2>Next steps</h2>
+      <p class="note">
+        Demo uses <strong>synthetic sample data</strong>. Real build uses your data. No fake testimonials.
+      </p>
+      <a class="cta" href="https://ikstudio-stre-benrlqvic9arhafgxfybyd.streamlit.app/">Open live synthetic demo</a>
+      <a class="cta secondary" href="mailto:indiankarigarstudio@gmail.com?subject=Dashboard%20intake">Email checklist → indiankarigarstudio@gmail.com</a>
+      <p class="note" style="margin-top:12px;">
+        Phone / WhatsApp: <a href="tel:+916283123493">+91 6283123493</a><br />
+        Instagram DM keyword <strong>DASHBOARD</strong> on @indian.karigar.studio
+      </p>
+    </div>
+
+    <footer>
+      Indian Karigar Studio · free planning tool · not a finished dashboard.<br />
+      Support: <a href="mailto:indiankarigarstudio@gmail.com">indiankarigarstudio@gmail.com</a> · +91 6283123493
+    </footer>
+  </div>
+  <script>
+    (function () {
+      const PACKAGES = {
+        starter: {
+          name: 'Starter',
+          price: '₹2,499',
+          advance: '₹1,250',
+          blurb: '1 page · CSV/Sheet upload · filters · 1 revision'
+        },
+        standard: {
+          name: 'Standard',
+          price: '₹5,999',
+          advance: '₹3,000',
+          blurb: 'Up to 3 pages · live Sheet · Cloud setup · 2 revisions'
+        },
+        pro: {
+          name: 'Pro',
+          price: '₹11,999',
+          advance: '₹6,000',
+          blurb: 'DB/API · login · scheduled refresh · handover · 3 revisions'
+        }
+      };
+
+      function val(name) {
+        const el = document.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : null;
+      }
+
+      function suggest(data, kpis, who, host) {
+        // Pro: DB/API OR needs login OR scheduled refresh/DB hosting
+        if (data === 'db' || who === 'login' || host === 'refresh') {
+          return 'pro';
+        }
+        // Starter: spreadsheet/CSV + ≤5 KPIs + no login + no DB/scheduled refresh
+        const sheetOrCsv = data === 'excel' || data === 'csv';
+        const kpisOk = kpis === '1-2' || kpis === '3-5';
+        if (sheetOrCsv && kpisOk) {
+          return 'starter';
+        }
+        // Otherwise Standard (shared link / multi-page feel / Sheet live / mix / 6+ KPIs)
+        return 'standard';
+      }
+
+      function render() {
+        const data = val('data');
+        const kpis = val('kpis');
+        const who = val('who');
+        const host = val('host');
+        const box = document.getElementById('result');
+
+        if (!data || !kpis || !who || !host) {
+          box.className = 'result empty';
+          box.innerHTML =
+            '<h2>Your suggested package</h2>' +
+            '<p class="soft">Answer sections 1, 2, 4 and 5 to see a suggestion.</p>';
+          return;
+        }
+
+        const key = suggest(data, kpis, who, host);
+        const p = PACKAGES[key];
+        box.className = 'result';
+        box.innerHTML =
+          '<h2>Suggested: ' + p.name + '</h2>' +
+          '<p class="price">' + p.price + '</p>' +
+          '<p class="advance">50% advance: <strong>' + p.advance + '</strong> · balance on delivery</p>' +
+          '<p class="soft">' + p.blurb + '</p>' +
+          '<p class="soft" style="margin-top:10px;">Suggestion only — reply with your checklist and we’ll confirm.</p>';
+      }
+
+      document.querySelectorAll('input[name="data"], input[name="kpis"], input[name="who"], input[name="host"], input[name="filter"]').forEach(function (el) {
+        el.addEventListener('change', render);
+      });
+      render();
+
+      // Expose for smoke checks in console / automation
+      window.__scopeSuggest = suggest;
+    })();
+  </script>
+</body>
+</html>

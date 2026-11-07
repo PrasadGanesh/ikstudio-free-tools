@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Solar Net Metering Sketch (India) — Indian Karigar Studio</title>
+  <meta name="description" content="Phone-friendly EXAMPLE net-metering export-credit sketch and DISCOM docs checklist for India installers. Not approval or credit guarantee. Free from Indian Karigar Studio." />
+  <style>
+    :root {
+      --bg: #1c1410; --card: #2a1f1a; --ink: #fff7ed; --muted: #b49e8c;
+      --accent: #d97706; --line: #4a3028; --green: #14532d; --yellow: #422006;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.5;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { font-size: 1.35rem; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; background: var(--accent); color: #1c1410;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px; margin-bottom: 14px;
+    }
+    .card h2 { margin: 0 0 12px; font-size: 1rem; }
+    label { display: block; font-size: 0.85rem; color: var(--muted); margin: 10px 0 4px; }
+    .row { display: flex; gap: 8px; align-items: center; }
+    input[type="number"], input[type="text"], select {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);
+      background: var(--yellow); color: var(--ink); font-size: 1rem;
+    }
+    .unit { color: var(--muted); font-size: 0.85rem; min-width: 4.5rem; }
+    .out {
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 0.95rem;
+    }
+    .out:last-child { border-bottom: 0; }
+    .out span:first-child { color: var(--muted); }
+    .out strong { color: #86efac; text-align: right; }
+    .note { font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; }
+    .doc {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem;
+    }
+    .doc:last-child { border-bottom: 0; }
+    .doc input { width: auto; margin-top: 3px; accent-color: var(--accent); }
+    .doc label { margin: 0; color: var(--ink); font-size: 0.9rem; }
+    a.cta {
+      display: block; text-align: center; margin-top: 8px; padding: 12px 14px;
+      background: var(--accent); color: #1c1410; font-weight: 700; text-decoration: none;
+      border-radius: 12px;
+    }
+    a.cta:hover { filter: brightness(1.05); }
+    footer { margin-top: 18px; color: var(--muted); font-size: 0.82rem; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">Free · India net-metering sketch</div>
+    <h1>Solar Net Metering Sketch</h1>
+    <p class="sub">
+      Rough annual <strong>export credit</strong> + a DISCOM docs checklist —
+      <strong>not</strong> approval, sanction, or a guaranteed credit amount.
+      Yellow fields start as <strong>EXAMPLE</strong> values aligned to the paid kit defaults (₹3.5/kWh export · ~1,602 export kWh). VERIFY with the current DISCOM / state portal the day you quote.
+    </p>
+
+    <div class="card">
+      <h2>Site / DISCOM (EXAMPLE — replace)</h2>
+      <p class="note">Same idea as the paid workbook’s Net Metering sheet. Numbers recalculate as you type.</p>
+      <label for="state">State / DISCOM (text)</label>
+      <input id="state" type="text" value="EXAMPLE — State / DISCOM name" />
+      <label for="avail">Net-metering available?</label>
+      <select id="avail">
+        <option value="Yes" selected>Yes</option>
+        <option value="No">No</option>
+      </select>
+      <label for="rate">Export credit (VERIFY with DISCOM)</label>
+      <div class="row"><input id="rate" type="number" min="0" step="0.1" value="3.5" /><span class="unit">₹ / kWh</span></div>
+      <label for="y1">Year-1 generation estimate</label>
+      <div class="row"><input id="y1" type="number" min="0" step="1" value="5341" /><span class="unit">kWh / yr</span></div>
+      <label for="self">Share of solar used on site (rest exported)</label>
+      <div class="row"><input id="self" type="number" min="0" max="1" step="0.05" value="0.7" /><span class="unit">0–1</span></div>
+      <label for="export">Annual export kWh (override if you already know it)</label>
+      <div class="row"><input id="export" type="number" min="0" step="1" value="1602.3" /><span class="unit">kWh / yr</span></div>
+      <label for="scheme">Subsidy scheme name (EXAMPLE label only)</label>
+      <input id="scheme" type="text" value="EXAMPLE — verify current scheme" />
+      <label for="subsidy">Subsidy ₹ on file (leave 0 if unsure)</label>
+      <div class="row"><input id="subsidy" type="number" min="0" step="100" value="0" /><span class="unit">₹</span></div>
+      <p class="note">Tip: changing Year-1 gen or self-use share refreshes the suggested export kWh. Edit export directly to lock your own estimate.</p>
+    </div>
+
+    <div class="card" style="background: var(--green); border-color: #166534;">
+      <h2>Calculated rough outputs</h2>
+      <div class="out"><span>Suggested export kWh (gen × (1 − self-use))</span><strong id="oSug">—</strong></div>
+      <div class="out"><span>Export kWh used in credit</span><strong id="oExp">—</strong></div>
+      <div class="out"><span>Estimated annual export credit</span><strong id="oCredit">—</strong></div>
+      <div class="out"><span>Subsidy on file</span><strong id="oSub">—</strong></div>
+      <div class="out"><span>Status note</span><strong id="oNote">—</strong></div>
+      <p class="note" style="margin-top:12px;color:#bbf7d0;">
+        Credit = export kWh × export ₹/kWh only when net-metering is Yes. Rates, eligibility and application steps differ by state/DISCOM and change — not a guarantee.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Documents checklist (workflow helper — not legal advice)</h2>
+      <p class="note">Ticks stay on this phone via localStorage. Same six rows as the paid Net Metering sheet.</p>
+      <div id="docs"></div>
+      <div class="out" style="margin-top:8px;"><span>Docs marked ready</span><strong id="oDocs">0 / 6</strong></div>
+    </div>
+
+    <div class="card">
+      <h2>Want the full India workbook?</h2>
+      <p class="note">
+        Sizing + parts &amp; margin + 25-year payback + sensitivity + EMI + net metering + battery + roof + soiling + subsidy + handover + quote compare + client proposal — ₹499 one-time.
+      </p>
+      <a class="cta" href="https://rzp.io/rzp/vDOX9lJ">Get the full kit → rzp.io/rzp/vDOX9lJ</a>
+    </div>
+
+    <footer>
+      Indian Karigar Studio · free tool · no fake credit or approval claims.<br />
+      Support: <a href="mailto:indiankarigarstudio@gmail.com">indiankarigarstudio@gmail.com</a> · +91 6283123493<br />
+      Keywords: <strong>NETMETER</strong> / <strong>EXPORT</strong> / <strong>DISCOM</strong> · also in free pack zip with Quick Size + CFA + EMI.
+    </footer>
+  </div>
+  <script>
+    const DOC_KEYS = [
+      { id: 'aadhaar', label: 'Aadhaar' },
+      { id: 'bill', label: 'Electricity bill (recent)' },
+      { id: 'property', label: 'Property proof' },
+      { id: 'app', label: 'Net-meter application form' },
+      { id: 'sanction', label: 'DISCOM approval / sanction' },
+      { id: 'kyc', label: 'Bank KYC for subsidy transfer' },
+    ];
+    const $ = (id) => document.getElementById(id);
+    const n = (id) => Number($(id).value);
+    const inr = (x, d=2) => Number.isFinite(x)
+      ? '₹' + x.toLocaleString('en-IN', { maximumFractionDigits: d, minimumFractionDigits: d })
+      : '—';
+    const inr0 = (x) => Number.isFinite(x)
+      ? '₹' + x.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+      : '—';
+    const kwh = (x) => Number.isFinite(x)
+      ? x.toLocaleString('en-IN', { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + ' kWh'
+      : '—';
+
+    let exportManual = false;
+    const LS = 'iks_solar_netmeter_docs_v1';
+
+    function renderDocs() {
+      const box = $('docs');
+      box.innerHTML = '';
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem(LS) || '{}') || {}; } catch (e) { saved = {}; }
+      DOC_KEYS.forEach(d => {
+        const row = document.createElement('div');
+        row.className = 'doc';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = 'doc_' + d.id;
+        cb.checked = !!saved[d.id];
+        cb.addEventListener('change', () => {
+          saved[d.id] = cb.checked;
+          try { localStorage.setItem(LS, JSON.stringify(saved)); } catch (e) {}
+          calc();
+        });
+        const lab = document.createElement('label');
+        lab.htmlFor = cb.id;
+        lab.textContent = d.label;
+        row.appendChild(cb);
+        row.appendChild(lab);
+        box.appendChild(row);
+      });
+    }
+
+    function calc() {
+      const y1 = n('y1'), self = n('self'), rate = n('rate'), subsidy = n('subsidy');
+      const avail = $('avail').value;
+      const sug = Math.max(0, y1 * (1 - self));
+      if (!exportManual) {
+        $('export').value = String(Math.round(sug * 10) / 10);
+      }
+      const exp = n('export');
+      const yes = String(avail).toUpperCase() === 'YES';
+      const credit = yes ? exp * rate : 0;
+      const note = yes
+        ? 'Net-metering marked Yes — export credit is a rough estimate only'
+        : 'Net-metering marked No / blank — export credit set to ₹0';
+      let ready = 0;
+      DOC_KEYS.forEach(d => { if ($('doc_' + d.id) && $('doc_' + d.id).checked) ready++; });
+      $('oSug').textContent = kwh(sug);
+      $('oExp').textContent = kwh(exp);
+      $('oCredit').textContent = inr(credit);
+      $('oSub').textContent = inr0(subsidy);
+      $('oNote').textContent = note;
+      $('oDocs').textContent = ready + ' / 6';
+      window.__netmeterSuggest = {
+        state: $('state').value,
+        avail: avail,
+        rate: rate,
+        y1: y1,
+        self: self,
+        exportSuggested: sug,
+        exportUsed: exp,
+        credit: credit,
+        subsidy: subsidy,
+        scheme: $('scheme').value,
+        docsReady: ready
+      };
+    }
+
+    renderDocs();
+    ['state','avail','rate','y1','self','subsidy','scheme'].forEach(id => {
+      $(id).addEventListener('input', () => { if (id === 'y1' || id === 'self') exportManual = false; calc(); });
+      $(id).addEventListener('change', () => { if (id === 'y1' || id === 'self') exportManual = false; calc(); });
+    });
+    $('export').addEventListener('input', () => { exportManual = true; calc(); });
+    calc();
+    // Smoke-aligned defaults: Y1 5341 · self 0.7 → export 1602.3 · rate 3.5 → credit ₹5,608.05 when Yes
+  </script>
+</body>
+</html>
