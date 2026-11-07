@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prasadganesh.github.io/ikstudio-free-tools/sitemap.xml
