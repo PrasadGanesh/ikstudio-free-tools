@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Airflow Design Warm-ups — Indian Karigar Studio</title>
+  <meta name="description" content="Phone-friendly free Airflow design warm-ups (5 original interview sketches + worked answers). Teaser for the Data Engineering Interview Pack. Indian Karigar Studio." />
+  <style>
+    :root {
+      --bg: #1c1410; --card: #2a1f1a; --ink: #fff7ed; --muted: #b49e8c;
+      --accent: #d97706; --line: #4a3028; --green: #14532d; --yellow: #422006;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.5;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { font-size: 1.35rem; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px; }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; background: var(--accent); color: #1c1410;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px; margin-bottom: 14px;
+    }
+    .card h2 { margin: 0 0 8px; font-size: 1rem; }
+    .level {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      color: var(--accent); border: 1px solid var(--line); border-radius: 999px;
+      padding: 2px 8px; margin-bottom: 8px;
+    }
+    .problem { font-size: 0.95rem; margin: 0 0 12px; }
+    .context {
+      font-size: 0.82rem; color: var(--muted); margin: 0 0 14px;
+      padding: 10px 12px; background: var(--yellow); border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+    button.reveal {
+      display: block; width: 100%; padding: 10px 12px; border-radius: 10px;
+      border: 1px solid var(--line); background: var(--yellow); color: var(--ink);
+      font-size: 0.92rem; font-weight: 600; cursor: pointer;
+    }
+    button.reveal:hover { filter: brightness(1.08); }
+    .answer {
+      display: none; margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .answer.open { display: block; }
+    .answer .why {
+      font-size: 0.85rem; color: var(--muted); margin: 10px 0 0;
+    }
+    pre.sql {
+      margin: 0; padding: 12px; background: #0f0a08; border-radius: 10px;
+      border: 1px solid var(--line); overflow-x: auto; white-space: pre-wrap;
+      word-break: break-word; font-size: 0.78rem; line-height: 1.45;
+      font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+      color: #bbf7d0;
+    }
+    .note { font-size: 0.82rem; color: var(--muted); margin: 0 0 10px; }
+    a.cta {
+      display: block; text-align: center; margin-top: 8px; padding: 12px 14px;
+      background: var(--accent); color: #1c1410; font-weight: 700; text-decoration: none;
+      border-radius: 12px;
+    }
+    a.cta:hover { filter: brightness(1.05); }
+    footer { margin-top: 18px; color: var(--muted); font-size: 0.82rem; }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">Free · Airflow warm-ups</div>
+    <h1>Airflow Design Warm-ups</h1>
+    <p class="sub">
+      Five original interview sketches with short worked answers (Airflow 2.x mental models).
+      <strong>Not</strong> a company interview bank and not employer material — written for learning.
+      Assume Airflow 2.x with a Scheduler + Triggerer unless noted.
+      Attempt cold, then tap Reveal.
+    </p>
+
+    <div class="card">
+      <h2>Practice context (fictional)</h2>
+      <p class="note">Made-up “NadiHaul” logistics platform — practice only, not a real production system.</p>
+      <div class="context">Hub scan landings → warehouse loads → ops dashboards. Shared MWAA-/Astro-style cluster with other teams’ DAGs. Prefer honest trade-offs over buzzwords.</div>
+    </div>
+
+    <div class="card" data-q="af1">
+      <span class="level">AF1 · Easy/Med</span>
+      <h2>catchup=True after weeks offline</h2>
+      <p class="problem">
+        A daily DAG was paused for 3 weeks. Someone unpauses it with <code>catchup=True</code> and
+        <code>start_date</code> still at the old value. What happens next, and how do you recover safely?
+      </p>
+      <button type="button" class="reveal" aria-expanded="false">Reveal answer</button>
+      <div class="answer" hidden>
+        <pre class="sql"># Scheduler will backfill ~21 daily runs in catch-up order
+# Risk: thundering herd on warehouse / API + surprise bill + SLA noise
+
+# Safe recovery pattern
+# 1) Pause again immediately if already exploding
+# 2) Set catchup=False (or keep True but raise start_date to "today")
+# 3) Clear only the runs you intentionally need; prefer a one-off backfill DAG
+#    with bounded data intervals + max_active_runs=1
+# 4) Confirm logical date vs data interval before clearing
+
+# Interview line: “catchup=True is a time machine — I treat unpausing as a capacity event.”</pre>
+        <p class="why"><strong>Why.</strong> Catch-up is useful for intentional historical loads; accidental unpause after downtime is a classic cluster meltdown story. Name the herd, then the bounded fix.</p>
+      </div>
+    </div>
+
+    <div class="card" data-q="af2">
+      <span class="level">AF2 · Med</span>
+      <h2>Pools vs starving other DAGs</h2>
+      <p class="problem">
+        Heavy extract tasks (API + warehouse unload) take most worker slots. Other teams’ short DAGs
+        queue for hours. How do you use pools / concurrency so heavy work can’t starve everything?
+      </p>
+      <button type="button" class="reveal" aria-expanded="false">Reveal answer</button>
+      <div class="answer" hidden>
+        <pre class="sql"># Create a pool for the expensive path (UI / CLI)
+# airflow pools set nadihaul_extract 4 "API + unload slots"
+
+# Task
+extract = PythonOperator(
+    task_id="extract_hub_scans",
+    python_callable=...,
+    pool="nadihaul_extract",
+    priority_weight=5,           # optional: prefer critical extracts inside the pool
+)
+
+# Also cap the DAG itself
+with DAG(
+    ...,
+    max_active_runs=2,
+    max_active_tasks=8,          # Airflow 2.2+ DAG-level task concurrency
+):
+    ...
+
+# Interview line: “Pools budget scarce external capacity; DAG max_active_* budgets my own fan-out.”</pre>
+        <p class="why"><strong>Why.</strong> Default shared slots = tragedy of the commons. Interviewers want you to name pool slots for the scarce resource (API QPS / warehouse slots), not only “buy more workers.”</p>
+      </div>
+    </div>
+
+    <div class="card" data-q="af3">
+      <span class="level">AF3 · Med</span>
+      <h2>Deferrable sensor vs poking FileSensor</h2>
+      <p class="problem">
+        A classic <code>FileSensor</code> with <code>poke_interval=60</code> waits up to 6 hours for a late hub drop.
+        Worker slots sit occupied. What do you change, and what component must be running?
+      </p>
+      <button type="button" class="reveal" aria-expanded="false">Reveal answer</button>
+      <div class="answer" hidden>
+        <pre class="sql"># Prefer a deferrable sensor (releases the worker slot while waiting)
+wait = FileSensorAsync(          # or FileSensor(..., deferrable=True) on versions that support it
+    task_id="wait_hub_drop",
+    filepath="s3://landing/nadihaul/{{ ds }}/_SUCCESS",
+    poke_interval=60,
+    timeout=6 * 3600,
+)
+
+# Requires the Triggerer process/service healthy
+# airflow components: scheduler + webserver + workers + triggerer
+
+# Interview line: “Poke sensors rent a worker; deferrable sensors rent a Triggerer wakeup.”</pre>
+        <p class="why"><strong>Why.</strong> Idle poke loops waste concurrency. Deferrable sensors free workers until the Triggerer fires. Always mention the Triggerer as the missing piece in many “we enabled async sensors but nothing deferred” stories.</p>
+      </div>
+    </div>
+
+    <div class="card" data-q="af4">
+      <span class="level">AF4 · Med</span>
+      <h2>Dynamic task mapping over files</h2>
+      <p class="problem">
+        Some nights you get 3 hub files; some nights 40. A static DAG with 40 parallel tasks looks silly
+        on quiet nights and fails when night 41 appears. How do you map tasks over a discovered list?
+      </p>
+      <button type="button" class="reveal" aria-expanded="false">Reveal answer</button>
+      <div class="answer" hidden>
+        <pre class="sql">@task
+def list_hub_files(data_interval_start=None) -> list[str]:
+    # return zero-or-more object keys for that interval
+    return s3.list_keys(prefix=f"hubs/{data_interval_start:%Y-%m-%d}/")
+
+@task
+def load_one(key: str) -> str:
+    return load_to_warehouse(key)
+
+with DAG(..., max_active_tasks=12):
+    keys = list_hub_files()
+    # Dynamic Task Mapping (Airflow 2.3+)
+    results = load_one.expand(key=keys)
+    # empty list → zero mapped instances (no-op), not a hard fail
+
+# Interview line: “I map over the discovered set; I don’t hard-code N parallel tasks for a variable N.”</pre>
+        <p class="why"><strong>Why.</strong> Static N is a maintenance trap. Mapping scales with the list; pair it with <code>max_active_tasks</code> / pools so a 200-file night doesn’t melt the cluster.</p>
+      </div>
+    </div>
+
+    <div class="card" data-q="af5">
+      <span class="level">AF5 · Med</span>
+      <h2>Dataset / TriggerDagRun decoupling</h2>
+      <p class="problem">
+        Producer DAG lands silver Parquet; three consumer DAGs (ops KPI, finance extract, ML features)
+        all used to hard-code <code>ExternalTaskSensor</code> on the producer’s task_id. Refactors keep breaking
+        sensors. How do you decouple with Datasets or TriggerDagRun?
+      </p>
+      <button type="button" class="reveal" aria-expanded="false">Reveal answer</button>
+      <div class="answer" hidden>
+        <pre class="sql"># Option A — Data-aware scheduling (Airflow 2.4+ Datasets)
+SILVER_SCANS = Dataset("s3://lake/nadihaul/silver/scans")
+
+# producer
+@task(outlets=[SILVER_SCANS])
+def write_silver(): ...
+
+# consumer DAG: schedule=[SILVER_SCANS]  # runs when outlet updates
+# Consumers no longer know producer task_ids
+
+# Option B — explicit TriggerDagRunOperator when you need params / one-shot
+trigger = TriggerDagRunOperator(
+    task_id="kick_ops_kpi",
+    trigger_dag_id="nadihaul_ops_kpi",
+    conf={"as_of": "{{ ds }}"},
+    wait_for_completion=False,
+)
+
+# Interview line: “I publish a Dataset (or trigger with conf); consumers shouldn’t hard-wire my task_ids.”</pre>
+        <p class="why"><strong>Why.</strong> ExternalTaskSensor couples graphs by private task names. Datasets / triggers make the contract the data (or an intentional kick), which survives producer refactors.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Want the full DE Interview Pack?</h2>
+      <p class="note">
+        Deeper Airflow chapter (different prompts from these warm-ups: idempotent loads, sensor vs schedule,
+        backfill, SLAs/retries, XCom, task groups/branching) · SQL windows · Spark · system design ·
+        energy/telemetry · pandas/Polars · dbt · Kafka/streaming · DQ · cloud SQL · lakehouse ·
+        take-home · testing/CI · security/governance · SQLite drills · mock interview day — ₹499 one-time.
+      </p>
+      <a class="cta" href="https://rzp.io/rzp/pi8ainEA">Get the full pack → rzp.io/rzp/pi8ainEA</a>
+      <p class="note" style="margin-top:12px;">
+        Also free: SQL window + Spark design warm-ups · DM <strong>AIRFLOW</strong> / <strong>WARMUP</strong> on Instagram / WhatsApp.
+      </p>
+    </div>
+
+    <footer>
+      Indian Karigar Studio · free teaser · original practice for learning only.<br />
+      Support: <a href="mailto:indiankarigarstudio@gmail.com">indiankarigarstudio@gmail.com</a> · +91 6283123493<br />
+      Keywords: <strong>AIRFLOW</strong> · <strong>WARMUP</strong>
+    </footer>
+  </div>
+  <script>
+    document.querySelectorAll('.card[data-q]').forEach(function (card) {
+      var btn = card.querySelector('button.reveal');
+      var ans = card.querySelector('.answer');
+      if (!btn || !ans) return;
+      btn.addEventListener('click', function () {
+        var open = ans.classList.toggle('open');
+        ans.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Hide answer' : 'Reveal answer';
+      });
+    });
+    window.__afSuggest = {
+      keywords: ['AIRFLOW', 'WARMUP'],
+      cta: 'https://rzp.io/rzp/pi8ainEA',
+      themes: ['catchup', 'pools', 'deferrable', 'dynamic_mapping', 'datasets']
+    };
+  </script>
+</body>
+</html>
