@@ -6,21 +6,21 @@
   <link rel="apple-touch-icon" href="https://prasadganesh.github.io/ikstudio-free-tools/apple-touch-icon.png" />
   <meta name="theme-color" content="#d97706" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Free SQL Window Warm-ups — Indian Karigar Studio</title>
-  <link rel="canonical" href="https://prasadganesh.github.io/ikstudio-free-tools/tools/SQL_Window_Warmups_Free.html" />
-  <meta property="og:title" content="Free SQL Window Warm-ups — Indian Karigar Studio" />
-  <meta property="og:description" content="Phone-friendly free SQL window-function warm-ups (5 original practice questions + worked answers). Teaser for the Data Engineering Interview Pack. Indian Karigar Studio." />
+  <title>SQL Window Function Interview Questions | 5 Free Exercises</title>
+  <link rel="canonical" href="https://prasadganesh.github.io/ikstudio-free-tools/tools/sql_window_warmups_free.html" />
+  <meta property="og:title" content="SQL Window Function Interview Questions | 5 Free Exercises" />
+  <meta property="og:description" content="Practise running totals, ranks, LAG and latest-row SQL questions with worked answers on a fictional retail schema. Free browser exercises, no sign-up." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://prasadganesh.github.io/ikstudio-free-tools/tools/SQL_Window_Warmups_Free.html" />
+  <meta property="og:url" content="https://prasadganesh.github.io/ikstudio-free-tools/tools/sql_window_warmups_free.html" />
   <meta property="og:site_name" content="Indian Karigar Studio" />
   <meta property="og:image" content="https://prasadganesh.github.io/ikstudio-free-tools/og/de.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Free SQL Window Warm-ups — Indian Karigar Studio" />
-  <meta name="twitter:description" content="Phone-friendly free SQL window-function warm-ups (5 original practice questions + worked answers). Teaser for the Data Engineering Interview Pack. Indian Karigar Studio." />
+  <meta name="twitter:title" content="SQL Window Function Interview Questions | 5 Free Exercises" />
+  <meta name="twitter:description" content="Practise running totals, ranks, LAG and latest-row SQL questions with worked answers on a fictional retail schema. Free browser exercises, no sign-up." />
   <meta name="twitter:image" content="https://prasadganesh.github.io/ikstudio-free-tools/og/de.png" />
-  <meta name="description" content="Phone-friendly free SQL window-function warm-ups (5 original practice questions + worked answers). Teaser for the Data Engineering Interview Pack. Indian Karigar Studio." />
+  <meta name="description" content="Practise running totals, ranks, LAG and latest-row SQL questions with worked answers on a fictional retail schema. Free browser exercises, no sign-up." />
   <style>
     :root {
       --bg: #1c1410; --card: #2a1f1a; --ink: #fff7ed; --muted: #b49e8c;
@@ -86,18 +86,36 @@
     a.cta:hover { filter: brightness(1.05); }
     footer { margin-top: 18px; color: var(--muted); font-size: 0.82rem; }
     footer a { color: var(--accent); }
+  
+    nav.crumbs { font-size: 0.85rem; margin: 0 0 12px; color: #b49e8c; }
+    nav.crumbs a { color: #d97706; font-weight: 600; text-decoration: none; }
+    .guide h2 { font-size: 1rem; margin: 14px 0 6px; }
+    .guide p { color: #b49e8c; font-size: 0.9rem; margin: 0 0 8px; }
+    nav.related { margin: 8px 0 18px; }
+    nav.related h2 { font-size: 1rem; margin: 0 0 8px; }
+    nav.related a { display: block; color: #d97706; font-weight: 600; text-decoration: none; margin: 6px 0; }
+    p.delivery { font-size: 0.82rem; color: #b49e8c; margin: 8px 0; }
   </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://prasadganesh.github.io/ikstudio-free-tools/"}, {"@type": "ListItem", "position": 2, "name": "SQL window function interview questions with answers", "item": "https://prasadganesh.github.io/ikstudio-free-tools/tools/sql_window_warmups_free.html"}]}</script>
 </head>
 <body>
   <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="https://prasadganesh.github.io/ikstudio-free-tools/">Free tools</a> / <span>SQL window function interview questions with answers</span></nav>
     <div class="badge">Free · SQL warm-ups</div>
-    <h1>SQL Window Warm-ups</h1>
+    <h1>SQL window function interview questions with answers</h1>
     <p class="sub">
       Five original practice questions with short worked answers.
       <strong>Not</strong> a company interview bank and not employer material — written for learning and interview prep.
       Dialects are SQLite-friendly; patterns translate to Postgres / BigQuery / Spark SQL.
       Attempt cold, then tap Reveal.
     </p>
+
+    <section class="guide">
+<h2>How to use this tool</h2>
+<p>Read the fictional retail schema, try each question, then tap Reveal for a worked answer.</p>
+<h2>Assumptions and limitations</h2>
+<p>Five original exercises: running totals, ranks, LAG and latest-row patterns. SQLite-friendly SQL on made-up tables. Not an employer question bank. No sign-up.</p>
+</section>
 
     <div class="card">
       <h2>Practice schema (fictional retail)</h2>
@@ -261,12 +279,21 @@ WHERE rn = 1;</pre>
         energy/telemetry · pandas/Polars · dbt · Kafka/streaming · DQ · cloud SQL · lakehouse ·
         take-home · testing/CI · security/governance · SQLite drills · mock interview day — ₹499 one-time.
       </p>
-      <a class="cta" href="https://rzp.io/rzp/pi8ainEA">Get the full pack → rzp.io/rzp/pi8ainEA</a>
+      <p class="delivery">Digital product · manual delivery after payment confirmation through the agreed WhatsApp/Instagram conversation within a few hours. Not an instant automated email download. Confirm a delivery conversation before paying.</p>
+      <a class="cta" href="https://rzp.io/rzp/pi8ainEA">Buy the Data Engineering Interview Pack · ₹499</a>
       <p class="note" style="margin-top:12px;">
         Also free: Spark design warm-ups · DM <strong>SPARK</strong> / <strong>WARMUP</strong>.
       </p>
     </div>
 
+    <nav class="related" aria-label="Related resources">
+<h2>Related resources</h2>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/">All free tools and digital kits</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/data-engineering-interview-pack-india.html">Data Engineering Interview Pack — ₹499</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/tools/de_interview_share_card_free.html">Data Engineering Interview Pack: resources and paid option</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/tools/spark_design_warmups_free.html">Free Spark interview design questions</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/tools/airflow_design_warmups_free.html">Free Airflow interview design questions</a>
+</nav>
     <footer>
       Indian Karigar Studio · free teaser · original practice for learning only.<br />
       Support: <a href="https://wa.me/916283123493">WhatsApp +91 6283123493</a> · indiankarigarstudio@gmail.com<br />

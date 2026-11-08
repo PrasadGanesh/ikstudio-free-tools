@@ -14,3 +14,13 @@ No sign-up. Paid kits (Creator ₹149, Wedding ₹399, Solar Quote ₹499, DE In
 Built by Indian Karigar Studio · indiankarigarstudio@gmail.com · +91 6283123493
 
 Claims are honest: EXAMPLE numbers are labelled; verify DISCOM / MNRE / bank rates before quoting clients. Demo dashboards use synthetic data only.
+
+Buyer pages (existing products only):
+
+- Wedding Season Canva Pack ₹399 — `wedding-canva-templates-india.html`
+- Creator Starter Kit ₹149 — `creator-canva-templates-india.html`
+- Solar Installer Quote & Payback Kit ₹499 (13-sheet workbook) — `solar-quotation-excel-india.html`
+- Data Engineering Interview Pack ₹499 — `data-engineering-interview-pack-india.html`
+- Streamlit dashboard service (Starter ₹2,499 / Standard ₹5,999 / Pro ₹11,999) — `streamlit-dashboard-development-india.html`
+
+Preferred public URLs are lowercase. Older PascalCase tool URLs still open and point at the lowercase canonical. `sitemap.xml` lists only those canonical HTML pages.

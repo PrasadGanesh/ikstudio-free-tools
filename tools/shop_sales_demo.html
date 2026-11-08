@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shop sales dashboard (example) — Indian Karigar Studio</title>
+  <title>Shop Sales Dashboard Demo | Synthetic Streamlit Example</title>
   <link rel="canonical" href="https://prasadganesh.github.io/ikstudio-free-tools/tools/shop_sales_demo.html" />
-  <meta property="og:title" content="Shop sales dashboard (example) — Indian Karigar Studio" />
-  <meta property="og:description" content="EXAMPLE synthetic shop sales dashboard. Not a real client. Revenue, orders, and average order value with region and category filters. Indian Karigar Studio." />
+  <meta property="og:title" content="Shop Sales Dashboard Demo | Synthetic Streamlit Example" />
+  <meta property="og:description" content="Explore a synthetic shop-sales dashboard with filters and charts. This is sample data, not a client case study. Compare custom dashboard service scopes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://prasadganesh.github.io/ikstudio-free-tools/tools/shop_sales_demo.html" />
   <meta property="og:site_name" content="Indian Karigar Studio" />
@@ -14,10 +14,10 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Shop sales dashboard (example) — Indian Karigar Studio" />
-  <meta name="twitter:description" content="EXAMPLE synthetic shop sales dashboard. Not a real client. Revenue, orders, and average order value with region and category filters. Indian Karigar Studio." />
+  <meta name="twitter:title" content="Shop Sales Dashboard Demo | Synthetic Streamlit Example" />
+  <meta name="twitter:description" content="Explore a synthetic shop-sales dashboard with filters and charts. This is sample data, not a client case study. Compare custom dashboard service scopes." />
   <meta name="twitter:image" content="https://prasadganesh.github.io/ikstudio-free-tools/og/dash.png" />
-  <meta name="description" content="EXAMPLE synthetic shop sales dashboard. Not a real client. Revenue, orders, and average order value with region and category filters. Indian Karigar Studio." />
+  <meta name="description" content="Explore a synthetic shop-sales dashboard with filters and charts. This is sample data, not a client case study. Compare custom dashboard service scopes." />
   <style>
     :root {
       --bg: #1c1410;
@@ -142,28 +142,46 @@
       .kpi .v { font-size: 1.35rem; }
       header h1 { font-size: 1.4rem; }
     }
+  
+    nav.crumbs { font-size: 0.85rem; margin: 0 0 12px; color: #b49e8c; }
+    nav.crumbs a { color: #d97706; font-weight: 600; text-decoration: none; }
+    .guide h2 { font-size: 1rem; margin: 14px 0 6px; }
+    .guide p { color: #b49e8c; font-size: 0.9rem; margin: 0 0 8px; }
+    nav.related { margin: 8px 0 18px; }
+    nav.related h2 { font-size: 1rem; margin: 0 0 8px; }
+    nav.related a { display: block; color: #d97706; font-weight: 600; text-decoration: none; margin: 6px 0; }
+    p.delivery { font-size: 0.82rem; color: #b49e8c; margin: 8px 0; }
   </style>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://prasadganesh.github.io/ikstudio-free-tools/"}, {"@type": "ListItem", "position": 2, "name": "Shop sales dashboard demo — synthetic sample data", "item": "https://prasadganesh.github.io/ikstudio-free-tools/tools/shop_sales_demo.html"}]}</script>
 </head>
 <body>
   <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="https://prasadganesh.github.io/ikstudio-free-tools/">Free tools</a> / <span>Shop sales dashboard demo — synthetic sample data</span></nav>
     <p class="banner">
       EXAMPLE · synthetic sample data — not a real client
       <span>Made-up orders for a shop-sales preview (random seed 42, 1 May 2026 – 31 Oct 2026). No real shop, customers, or sales.</span>
     </p>
     <header>
       <div class="badge">Dashboard preview</div>
-      <h1>Shop sales dashboard</h1>
+      <h1>Shop sales dashboard demo — synthetic sample data</h1>
       <p class="sub">
         Static preview of an Indian Karigar Studio shop / D2C dashboard.
         Revenue, orders, and average order value update in the browser when you filter by region, category, or channel.
         Same synthetic sample as the Streamlit demo. No login.
       </p>
+
+    <section class="guide">
+<h2>How to use this tool</h2>
+<p>Use the region, category and channel filters. The KPI cards and charts update in the browser.</p>
+<h2>Assumptions and limitations</h2>
+<p>Synthetic sample data only (made-up orders, random seed 42). Not a real shop and not a client case study. A paid build uses your CSV or Google Sheet.</p>
+</section>
       <p class="nav">
         <a href="../index.html">All free tools</a>
         ·
         <a href="https://ikstudio-stre-benrlqvic9arhafgxfybyd.streamlit.app/">Streamlit demo</a>
         ·
-        <a href="Dashboard_Scope_Estimator_Free.html">Free Scope Estimator</a>
+        <a href="dashboard_scope_estimator_free.html">Streamlit dashboard scope and cost estimator</a>
       </p>
     </header>
 
@@ -240,6 +258,13 @@
       </div>
     </details>
 
+    <nav class="related" aria-label="Related resources">
+<h2>Related resources</h2>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/">All free tools and digital kits</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/streamlit-dashboard-development-india.html">Streamlit Dashboard Build — from ₹2,499</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/tools/streamlit_share_card_free.html">Streamlit Dashboard Build: resources and paid option</a>
+<a href="https://prasadganesh.github.io/ikstudio-free-tools/tools/dashboard_scope_estimator_free.html">Streamlit dashboard scope and cost estimator</a>
+</nav>
     <footer>
       <p><strong style="color:var(--ink)">Indian Karigar Studio</strong> — example preview for a custom dashboard build. A paid build uses your CSV or Google Sheet. Package bands listed on the hub: Starter ₹2,499, Standard ₹5,999, Pro ₹11,999.</p>
       <p>Catalogue prices used to invent this sample: Kurti ₹899, Saree ₹2,499, Dupatta ₹449, Jhumka ₹299, Potli bag ₹599. Discounts of 0%, 10%, or 20% were applied at random.</p>
