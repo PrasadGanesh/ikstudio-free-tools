@@ -12,4 +12,5 @@
 
 - 2026-11-08 ~12:05 AM IST: lowercase aliases all 200; Launchpad +7 (#8604–#8610 EMI/NetMeter/Battery/Spark/Airflow/Wedding/Captions).
 - 2026-11-08 ~2:05 AM IST: staged Solar_Roof_Fit_Free.html (+ lowercase) + rebuilt Solar_Free_Installer_Pack.zip + index/sitemap; CloudAgent `bc-b60807fc…` shipping to hub main.
-- 2026-11-08 ~3:05 AM IST: staged Solar_Soiling_Degradation_Free.html (+ lowercase) + rebuilt Solar_Free_Installer_Pack.zip + index/sitemap; CloudAgent shipping to hub main.
+- 2026-11-08 ~3:05 AM IST: a soiling/degradation phone sketch was staged, then withdrawn the same morning.
+- 2026-11-08: removed that soiling/degradation phone tool (both filename cases), its hub link, JSON-LD mention, sitemap URLs, and copies inside Solar_Free_Installer_Pack.zip. Removed the employer name from DE_Free_Warmup_Pack.zip. Sizing, roof, payback, other products, prices, and checkout URLs unchanged.
